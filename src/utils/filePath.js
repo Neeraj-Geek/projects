@@ -8,7 +8,6 @@ function filePath(loc, fileName) {
   try {
     if (loc === "html") {
       const file = path.join(__dirname, "..", "..", "public", loc, fileName);
-      console.log("file :>> ", file);
       return file;
     }
   } catch (error) {

@@ -1,5 +1,9 @@
 import filePath from "../utils/filePath.js";
-import { CHECK_EXISTING_USER, SAVE_USER } from "../db/user_db_queries.js";
+import {
+  CHECK_EXISTING_USER,
+  SAVE_USER,
+  CHECK_EXISTING_USER_BY_ID,
+} from "../db/user_db_queries.js";
 import pool from "../utils/mysql.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -18,8 +22,6 @@ export const user_dashboard_controller = (req, res) => {
 
 export const user_register_controller = async (req, res) => {
   try {
-    console.log("11111 :>> ", 11111);
-    console.log(req.body);
     const { username, email, password } = req.body;
 
     if (!username?.trim() || !email?.trim() || !password?.trim()) {
@@ -91,4 +93,15 @@ export const user_logout_controller = (req, res) => {
   // localStorage.clear();
   res.clearCookie("token");
   res.status(200).sendFile(filePath("html", "login.html"));
+};
+
+export const user_data_controller = async (req, res) => {
+  const token = req.cookies.token;
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  const [rows] = await pool.query(CHECK_EXISTING_USER_BY_ID, [decoded.id]);
+  if (rows.length === 0) {
+    return res.status(404).json({ message: "User not found", status: false });
+  }
+  let userobj = { username: rows[0].username, role: rows[0].role };
+  return res.status(200).json(userobj);
 };

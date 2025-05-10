@@ -3,6 +3,7 @@ dotenv.config();
 const DB = process.env.DB_NAME;
 
 export const CHECK_EXISTING_USER = `select * FROM ${DB}.users where email =  ?;`;
+export const CHECK_EXISTING_USER_BY_ID = `select * FROM ${DB}.users where id =  ?;`;
 
 // ********saveQuries***********
 
