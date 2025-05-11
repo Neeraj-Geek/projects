@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    let data = await getP("http://localhost:3000/user/userdata");
+    let data = await getP("http://localhost:8080/user/userdata");
 
     if (!!data) {
       document.getElementById(
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const localStorageObj = JSON.stringify(data);
       localStorage.setItem("userData", localStorageObj);
 
-      let urlData = await getP("http://localhost:3000/user/userurl");
+      let urlData = await getP("http://localhost:8080/user/userurl");
 
       let urlList = document.getElementById("urlList");
 
