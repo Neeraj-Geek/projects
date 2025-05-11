@@ -1,8 +1,13 @@
 import filePath from "../utils/filePath.js";
+import cryptoRandomStringAsync from "crypto-random-string";
 import {
   CHECK_EXISTING_USER,
   SAVE_USER,
   CHECK_EXISTING_USER_BY_ID,
+  USER_URL_BY_ID,
+  All_URL,
+  SAVE_USER_URL,
+  GET_ORG_URL,
 } from "../db/user_db_queries.js";
 import pool from "../utils/mysql.js";
 import bcrypt from "bcrypt";
@@ -102,6 +107,66 @@ export const user_data_controller = async (req, res) => {
   if (rows.length === 0) {
     return res.status(404).json({ message: "User not found", status: false });
   }
-  let userobj = { username: rows[0].username, role: rows[0].role };
+  let userobj = {
+    id: rows[0].id,
+    username: rows[0].username,
+    role: rows[0].role,
+  };
   return res.status(200).json(userobj);
+};
+
+export const user_url_controller = async (req, res) => {
+  const token = req.cookies.token;
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  if (decoded.role == "admin") {
+    const [rows] = await pool.query(All_URL);
+    if (rows.length === 0) {
+      return res.status(404).json({ message: "User not found", status: false });
+    }
+    return res.status(200).json(rows);
+  } else {
+    const [rows] = await pool.query(USER_URL_BY_ID, [decoded.id]);
+    if (rows.length === 0) {
+      return res.status(404).json({ message: "User not found", status: false });
+    }
+    return res.status(200).json(rows);
+  }
+};
+
+export const user_save_url_controller = async (req, res) => {
+  const { originalUrl } = req.body;
+  const token = req.cookies.token;
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  const shortUrl = await cryptoRandomStringAsync({
+    length: 6,
+    type: "alphanumeric",
+  });
+  const [results] = await pool.query(SAVE_USER_URL, [
+    decoded.id,
+    originalUrl,
+    shortUrl,
+  ]);
+  if (results?.affectedRows === 0) {
+    return res.status(400).json({ error: "Error while saving" });
+  }
+  res.status(200).redirect("/user/");
+};
+
+export const user_url_redirect_controller = async (req, res) => {
+  const { shortcode } = req.params;
+
+  try {
+    const [rows] = await pool.query(GET_ORG_URL, [shortcode]);
+
+    if (rows.length === 0) return res.status(404).send("URL not found");
+
+    let originalUrl = rows[0].original_url;
+
+    originalUrl = "https://" + originalUrl;
+
+    res.redirect(originalUrl);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Something went wrong");
+  }
 };

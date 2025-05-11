@@ -1,4 +1,8 @@
-/* style.css */
+/* Reset & Global */
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #121212;
     color: #e0e0e0;
@@ -32,6 +36,7 @@ button {
     margin-bottom: 1rem;
     border: none;
     border-radius: 8px;
+    font-size: 16px;
 }
 
 input {
@@ -58,6 +63,7 @@ a {
     text-align: center;
 }
 
+/* Dashboard Section */
 .dashboard {
     width: 80%;
     padding: 2rem;
@@ -80,4 +86,34 @@ a {
     padding: 1rem;
     margin-bottom: 0.5rem;
     border-radius: 8px;
+}
+
+/* URL Form Section */
+.url-form {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.url-form input[type="text"],
+.url-form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.url-form button {
+    background-color: #fba518;
+    color: #000;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.url-form button:hover {
+    background-color: #e69500;
 }

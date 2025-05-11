@@ -13,13 +13,18 @@
     <div class="dashboard">
         <h2 id="user_name">Welcome, [Username]</h2>
         <p id="role">Role: [admin/user]</p>
-        <ul>
-            <li><strong>Original URL:</strong> https://example.com<br><strong>Short URL:</strong>
-                https://short.ly/abc123</li>
-            <li><strong>Original URL:</strong> https://another.com<br><strong>Short URL:</strong>
-                https://short.ly/xyz789</li>
+
+        <!-- 🔽 New Form Added Here -->
+        <form action="/user/shorten" method="POST" class="url-form">
+            <input type="text" name="originalUrl" placeholder="Enter a long URL..." required />
+            <button type="submit">Shorten</button>
+        </form>
+
+        <ul id="urlList">
+
+
         </ul>
-        <a href="/logout">Logout</a>
+        <a href="/user/logout" id='logout'>Logout</a>
     </div>
 </body>
 
