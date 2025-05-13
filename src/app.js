@@ -20,7 +20,7 @@ app.use(cookieParser());
 //routes import
 
 //routes declaration
-app.use("/user", user_router);
+app.use("/", user_router);
 app.get("/user/:shortcode", user_url_redirect_controller);
 
 // http://localhost:8000/api/v1/users/register

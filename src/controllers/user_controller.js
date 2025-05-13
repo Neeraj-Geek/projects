@@ -22,7 +22,7 @@ export const user_signup_controller = (req, res) => {
 };
 
 export const user_dashboard_controller = (req, res) => {
-  res.sendFile(filePath("html", "dashboard.html"));
+  res.sendFile(filePath("html", "notes.html"));
 };
 
 export const user_register_controller = async (req, res) => {
