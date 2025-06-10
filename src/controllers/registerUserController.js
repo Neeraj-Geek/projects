@@ -1,6 +1,7 @@
 import { User } from "../model/userModel.js";
 import { responseUtil } from "../utils/resposneUtil.js";
-
+import bcrypt from "bcrypt";
+const salt = bcrypt.genSaltSync(10);
 export const registerUserController = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -20,8 +21,9 @@ export const registerUserController = async (req, res) => {
         error: "Duplicate email",
       });
     }
+    const hashPassword = bcrypt.hashSync(password, salt);
 
-    const user = new User(req.body);
+    const user = new User({ name, email, password: hashPassword });
     await user.save();
     return responseUtil(res, "User Register successfully", 200, true, { user });
   } catch (err) {
