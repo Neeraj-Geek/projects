@@ -82,3 +82,11 @@ export const loginUserController = async (req, res) => {
     });
   }
 };
+export const logoutUserController = (req, res) => {
+  res.clearCookie("authToken");
+  responseUtil(res, "Logout Successfully.", 200),
+    true,
+    {
+      error: "Logout Successfully.",
+    };
+};
