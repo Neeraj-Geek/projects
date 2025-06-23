@@ -4,6 +4,9 @@ import cookieParser from "cookie-parser";
 import authRoute from "./routes/authRoute.js";
 import userRoute from "./routes/usersRoute.js";
 import postRoutes from "./routes/postRoutes.js";
+import commentRoute from "./routes/commentsRoute.js";
+import { tokenCheck } from "./utils/verifyJwtToken.js";
+import searchRoute from "./routes/searchRoute.js";
 
 const app = express();
 
@@ -21,5 +24,7 @@ app.use(cookieParser());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoutes);
+app.use("/api/comments", tokenCheck, commentRoute);
+app.use("/api/search", tokenCheck, searchRoute);
 
 export { app };
