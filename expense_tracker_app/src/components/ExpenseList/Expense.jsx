@@ -10,9 +10,10 @@ function ExpenseList({ expenseListItem, handleDeleteExpense }) {
             {expenseListItem.map((item) => (
               <li key={item.id} class="expense-item">
                 <div class="expense-details">
-                  <h3>{item.title}</h3>
-                  <p>₹{item.amount}</p>
-                  <small>{item.date}</small>
+                  <h3>Title:{item.title}</h3>
+                  <small>Category: {item.category}</small>
+                  <p>Amount:₹{item.amount}</p>
+                  <small>Date:{item.date}</small>
                 </div>
                 <button
                   onClick={() => handleDeleteExpense(item.id)}

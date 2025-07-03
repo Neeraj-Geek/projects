@@ -4,6 +4,7 @@ function AddExpenseForm({ onAddExpense }) {
     title: "",
     amount: "",
     date: "",
+    category: "",
   });
 
   const handleChange = (e) => {
@@ -20,11 +21,24 @@ function AddExpenseForm({ onAddExpense }) {
     onAddExpense(formData);
     console.log("Expense Submitted:", formData);
 
-    setFormData({ title: "", amount: "", date: "" });
+    setFormData({ title: "", amount: "", date: "", category: "Food" });
   };
   return (
     <>
       <form className="expense-form" onSubmit={handleSubmit}>
+        <select
+          name="category"
+          value={formData.category}
+          onChange={handleChange}
+          required
+        >
+          <option value="Food">Food</option>
+          <option value="Bills">Bills</option>
+          <option value="Travel">Travel</option>
+          <option value="Shopping">Shopping</option>
+          <option value="Other">Other</option>
+        </select>
+
         <input
           type="text"
           placeholder="Expense Title"
