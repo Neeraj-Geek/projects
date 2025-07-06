@@ -1,12 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 
-function AddTaskForm() {
+function AddTaskForm({ AddTask }) {
+  const [taskName, setTaskName] = useState("");
+  const [taskPriority, setTaskPriority] = useState("low");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newTask = {
+      id: Date.now(),
+      task: taskName,
+      priority: taskPriority,
+    };
+
+    AddTask(newTask);
+    setTaskName("");
+    setTaskPriority("");
+  };
+
   return (
     <>
-      <form>
-        <input type="text" placeholder="Enter a new task..." required />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Enter a new task..."
+          value={taskName}
+          onChange={(e) => {
+            setTaskName(e.target.value);
+          }}
+          required
+        />
 
-        <select required>
+        <select
+          value={taskPriority}
+          onChange={(e) => {
+            setTaskPriority(e.target.value);
+          }}
+          required
+        >
           <option value="">Select Importance</option>
           <option value="low">Low</option>
           <option value="medium">Medium</option>

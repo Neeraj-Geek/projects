@@ -1,20 +1,19 @@
 import React from "react";
 
-function TaskList() {
+function TaskList({ tasks, deleteTask }) {
   return (
     <>
-      <li>
-        Buy groceries — <strong>Medium</strong>
-        <button class="delete-btn">Delete</button>
-      </li>
-      <li>
-        Finish React assignment — <strong>High</strong>
-        <button class="delete-btn">Delete</button>
-      </li>
-      <li>
-        Call Mom — <strong>Low</strong>
-        <button class="delete-btn">Delete</button>
-      </li>
+      {tasks.map((task) => {
+        return (
+          <li key={task.id}>
+            {task.task}
+            <strong> {task.priority}</strong>
+            <button onClick={() => deleteTask(task.id)} className="delete-btn">
+              Delete
+            </button>
+          </li>
+        );
+      })}
     </>
   );
 }
