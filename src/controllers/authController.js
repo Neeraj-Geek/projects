@@ -64,6 +64,12 @@ export const loginUserController = async (req, res) => {
         }
       );
     }
+    const comparePass = await bcrypt.compare(password, user.password);
+    if (!comparePass) {
+      return responseUtil(res, "Invalid Password", 500, false, {
+        error: "Invalid Password",
+      });
+    }
     const { _id, name } = user;
 
     const secretKey = process.env.JWT_SECRET_TOKEN;
@@ -73,8 +79,15 @@ export const loginUserController = async (req, res) => {
       secretKey,
       { expiresIn: "1h" }
     );
-    res.cookie("authToken", token);
-    res.sendFile(filePath("html", "dashboard.html"));
+    res.cookie("authToken", token, {
+      httpOnly: true,
+      secure: false,
+    });
+    return responseUtil(res, "Login Successful", 200, true, {
+      userId: _id,
+      username: name,
+      email: email,
+    });
   } catch (err) {
     return responseUtil(res, "Login failed", 500, false, {
       error: err.message,

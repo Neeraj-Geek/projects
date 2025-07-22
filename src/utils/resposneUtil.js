@@ -5,7 +5,7 @@ export const responseUtil = (
   success = true,
   additionalData = {}
 ) => {
-  return res.status(status).send({
+  return res.status(status).json({
     success,
     message,
     ...additionalData,
