@@ -7,6 +7,7 @@ import postRoutes from "./routes/postRoutes.js";
 import commentRoute from "./routes/commentsRoute.js";
 import { tokenCheck } from "./utils/verifyJwtToken.js";
 import searchRoute from "./routes/searchRoute.js";
+import htmlRoute from "./routes/htmlRoute.js";
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
+app.use("/", htmlRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoutes);

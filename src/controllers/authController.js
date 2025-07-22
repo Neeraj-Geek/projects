@@ -3,6 +3,7 @@ import { responseUtil } from "../utils/resposneUtil.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import filePath from "../utils/filePath.js";
 
 const salt = bcrypt.genSaltSync(10);
 dotenv.config();
@@ -73,9 +74,7 @@ export const loginUserController = async (req, res) => {
       { expiresIn: "1h" }
     );
     res.cookie("authToken", token);
-    responseUtil(res, "Login Successfully", 200, true, {
-      error: "Login Successfully",
-    });
+    res.sendFile(filePath("html", "dashboard.html"));
   } catch (err) {
     return responseUtil(res, "Login failed", 500, false, {
       error: err.message,

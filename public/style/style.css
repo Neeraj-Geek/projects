@@ -1,119 +1,124 @@
-/* Reset & Global */
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
+    font-family: sans-serif;
     background-color: #121212;
-    color: #e0e0e0;
-    font-family: 'Segoe UI', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-form {
-    background-color: #1e1e1e;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 0 10px #00000050;
-    width: 300px;
-}
-
-h2 {
-    text-align: center;
-    color: #FBA518;
-    margin-bottom: 1.5rem;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-button {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-input {
-    background-color: #2c2c2c;
-    color: #ffffff;
-}
-
-button {
-    background-color: #FBA518;
-    color: #000;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-button:hover {
-    background-color: #e39d15;
+    color: #f5f5f5;
 }
 
 a {
-    color: #FBA518;
+    color: inherit;
     text-decoration: none;
-    display: block;
-    text-align: center;
 }
 
-/* Dashboard Section */
-.dashboard {
-    width: 80%;
-    padding: 2rem;
-    background-color: #1e1e1e;
-    border-radius: 12px;
-    box-shadow: 0 0 10px #00000080;
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
 }
 
-.dashboard h2 {
-    margin-bottom: 1rem;
+header,
+footer,
+.hero,
+section {
+    padding: 1.5rem 0;
 }
 
-.dashboard ul {
-    list-style: none;
-    padding: 0;
-}
-
-.dashboard ul li {
-    background: #2c2c2c;
-    padding: 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: 8px;
-}
-
-/* URL Form Section */
-.url-form {
-    margin: 20px 0;
+.nav {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.url-form input[type="text"],
-.url-form button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    box-sizing: border-box;
+nav ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
 }
 
-.url-form button {
-    background-color: #fba518;
+.logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.logo span {
+    color: #FBA518;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    background: #FBA518;
     color: #000;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    border: none;
+    border-radius: 5px;
+    transition: background 0.3s;
 }
 
-.url-form button:hover {
-    background-color: #e69500;
+.btn:hover {
+    background: #ffaa00;
+}
+
+.hero {
+    text-align: center;
+    background-color: #181818;
+}
+
+.hero h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero p {
+    margin-bottom: 1rem;
+    color: #bbb;
+}
+
+.blog-section {
+    padding: 2rem 0;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.card {
+    background: #1f1f1f;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.card:hover {
+    background: #272727;
+}
+
+.card .date {
+    color: #999;
+    font-size: 0.8rem;
+}
+
+form input,
+form button {
+    display: block;
+    margin: 0.5rem 0;
+    padding: 0.6rem;
+    width: 100%;
+    border-radius: 5px;
+}
+
+form input {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    color: #fff;
+}
+
+form button {
+    background-color: #FBA518;
+    color: #000;
+    border: none;
 }

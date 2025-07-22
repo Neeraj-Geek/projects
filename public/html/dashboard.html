@@ -4,28 +4,50 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="../style/style.css" />
-    <script src="../script/dashboard.js"></script>
+    <title>blogShop - Dark Blog</title>
+    <link rel="stylesheet" href="/style/style.css" />
 </head>
 
 <body>
-    <div class="dashboard">
-        <h2 id="user_name">Welcome, [Username]</h2>
-        <p id="role">Role: [admin/user]</p>
+    <header>
+        <div class="container nav">
+            <h1 class="logo">blog<span>Shop</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" class="btn">Login</a></li>
+                    <li><a href="signup.html" class="btn">Signup</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-        <!-- 🔽 New Form Added Here -->
-        <form action="/user/shorten" method="POST" class="url-form">
-            <input type="text" name="originalUrl" placeholder="Enter a long URL..." required />
-            <button type="submit">Shorten</button>
-        </form>
+    <section class="hero">
+        <div class="container">
+            <h2>Welcome to Our Blog</h2>
+            <p>Discover our latest news and articles.</p>
+            <a href="#" class="btn add-blog">Add Blog</a>
+        </div>
+    </section>
 
-        <ul id="urlList">
+    <section class="blog-section">
+        <div class="container">
+            <h3>Latest Posts</h3>
+            <div class="blog-grid">
+                <a href="post-detail.html" class="card">
+                    <h4>Blog Post Title</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <span class="date">July 21, 2025</span>
+                </a>
+            </div>
+        </div>
+    </section>
 
-
-        </ul>
-        <a href="/user/logout" id='logout'>Logout</a>
-    </div>
+    <footer>
+        <p>&copy; 2025 blogShop. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>
