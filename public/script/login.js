@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const result = await response.json();
-      console.log(result);
 
       Toastify({
         text: result.message || "Login response received",
@@ -29,6 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }).showToast();
 
       if (result.success) {
+        const userObj = {
+          email: result?.email,
+          userId: result?.userId,
+          username: result?.username,
+          isLoggedIn: true,
+        };
+        localStorage.setItem("userData", JSON.stringify(userObj));
         window.location.href = "/";
       }
     } catch (err) {
