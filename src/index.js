@@ -4,17 +4,21 @@ import mongoose from "mongoose";
 dotenv.config();
 
 const MONGO_URI = process.env.MONGO_DB; // Use your DB name
-const port = 8080;
+const port = 8012;
 
-console.log(process.env.MONGO_DB);
-mongoose
-  .connect(MONGO_URI)
-  .then(() => {
-    console.log("✅ Local MongoDB Connected");
-    app.listen(port, () => {
-      console.log(`🚀 Server is running at http://localhost:${port}`);
-    });
-  })
-  .catch((err) => {
-    console.error("❌ MongoDB connection failed:", err);
-  });
+// console.log(process.env.MONGO_DB);
+// mongoose
+//   .connect(MONGO_URI)
+//   .then(() => {
+//     console.log("✅ Local MongoDB Connected");
+//     app.listen(port, () => {
+//       console.log(`🚀 Server is running at http://localhost:${port}`);
+//     });
+//   })
+//   .catch((err) => {
+//     console.error("❌ MongoDB connection failed:", err);
+//   });
+
+app.listen(port, () => {
+  console.log(`🚀 Server is running at http://localhost:${port}`);
+});
